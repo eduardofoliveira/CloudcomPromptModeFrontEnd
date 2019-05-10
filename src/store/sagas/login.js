@@ -7,6 +7,7 @@ import { Creators as LoginActions } from "../ducks/login";
 export function* loginAttempt(action) {
   try {
     const { data } = yield call(api.post, `/auth`, action.payload.user);
+    const { history } = action.payload;
 
     const usuario = {
       id: data.user.id,
@@ -18,6 +19,7 @@ export function* loginAttempt(action) {
     login(usuario.token);
 
     yield put(LoginActions.loginSuccess(usuario));
+    history.push("/app");
   } catch (error) {
     if (error.response) {
       yield put(

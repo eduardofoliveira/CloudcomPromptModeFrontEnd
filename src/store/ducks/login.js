@@ -43,9 +43,9 @@ export default function login(state = INITIAL_STATE, action) {
  * Actions
  */
 export const Creators = {
-  loginAttempt: user => ({
+  loginAttempt: (user, history) => ({
     type: Types.LOGIN_REQUEST,
-    payload: { user }
+    payload: { user, history }
   }),
 
   loginSuccess: user => ({

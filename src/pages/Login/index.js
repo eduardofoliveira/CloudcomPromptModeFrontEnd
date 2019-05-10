@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -19,20 +18,23 @@ class Login extends Component {
   handleSignIn = async e => {
     e.preventDefault();
     const { email, password } = this.state;
+    const { history } = this.props;
 
     if (!email || !password) {
       this.props.loginFailure("Preencha e-mail e senha para continuar!");
     } else {
       const user = { email, password };
-      this.props.loginAttempt(user);
+      this.props.loginAttempt(user, history);
     }
   };
 
-  render() {
+  componentDidMount() {
     if (isAuthenticated()) {
       this.props.history.push("/app");
     }
+  }
 
+  render() {
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>

@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { isAuthenticated, logout } from "./services/auth";
+import { isAuthenticated } from "./services/auth";
 import Login from "./pages/Login";
+import Logout from "./pages/Logout";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -22,15 +23,7 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Login} />
 
-      <Route
-        exact
-        path="/logout"
-        component={() => {
-          logout();
-        }}
-      >
-        <Redirect to="/" />
-      </Route>
+      <Route exact path="/logout" component={Logout} />
 
       <Route path="/signup" component={() => <h1>SignUp</h1>} />
       <PrivateRoute path="/app" component={() => <h1>App</h1>} />
