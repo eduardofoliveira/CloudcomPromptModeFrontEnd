@@ -8,6 +8,7 @@ export const Container = styled.div`
 
   h2 {
     color: #2196f3;
+    font-family: "Asap", sans-serif;
   }
 `;
 
